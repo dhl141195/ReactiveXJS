@@ -6,6 +6,7 @@
     - [Xây dựng "Account suggestion box" sử dụng RxJS](#xay-dung-account-suggestion-box-su-dung-rxjs)
         - [Load & render 3 account khi vừa vào trang](#load-render-3-account-khi-vua-vao-trang)
         - [Load & render 3 account khi click "Refresh"](#load-render-3-account-khi-click-refresh)
+    - [Cold vs Hot Observable](#cold-vs-hot-observable)
 
 # Reactive programming là gì
 
@@ -289,4 +290,14 @@ refreshClickStream: ----------o---------o---->
  suggestion2Stream: -N--q-----N----q----N-q-->
  suggestion3Stream: -N--t-----N----t----N-t-->
  ```
+
+## Cold vs Hot Observable
+
+Cold Observable là observable chỉ bắt đầu emit value sau khi được subscribe. Value không được share giữa các subscriber.
+
+Hot Observable là observable có thể tự bắt đầu emit value khi nó được khởi tạo. Ví dụ như 1 observable khởi tạo từ mouse move event. Ngay sau khi khởi tạo, observable này có thể bắt đầu emit value mỗi khi mouse move mà không cần chờ được subscribe. Sau khi 1 subscriber subsribe hot obervable, subcriber này sẽ nhận được các value được emit sau thời điểm subscribe. Các value này sẽ được share giữa các subscriber.
+
+- Cold Observables: movies.
+- Hot Observables: live performances.
+- Hot Observables replayed: live performances recorded on video.
 
